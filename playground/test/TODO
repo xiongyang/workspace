@@ -1,0 +1,1 @@
+Multiline delete with last line will cause a bug  the last line will not be delete

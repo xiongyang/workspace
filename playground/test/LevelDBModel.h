@@ -37,12 +37,13 @@ public:
 			Qt::EditRole) Q_DECL_OVERRIDE;
 	Qt::ItemFlags flags(const QModelIndex &index) const Q_DECL_OVERRIDE;
 
-	bool insertRows(int position, int rows, const QModelIndex &index =
+	bool insertRows(int position, int end_row_number, const QModelIndex &index =
 			QModelIndex()) Q_DECL_OVERRIDE;
-	bool removeRows(int position, int rows, const QModelIndex &index =
+	bool removeRows(int position, int end_row_number, const QModelIndex &index =
 			QModelIndex()) Q_DECL_OVERRIDE;
 public slots:
 	void InsertNewData(const QString& key, const QString& value);
+	void DeleteItem(const QString& key);
 
 private:
 	std::pair<QModelIndex, QModelIndex> FindKeyIndex(const QString& keyvalue);

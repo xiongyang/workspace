@@ -177,16 +177,18 @@ std::pair<QModelIndex, QModelIndex> LevelDBModel::FindKeyIndex(
 	return std::make_pair(index(count, 0), index(count, 1));
 }
 
-bool LevelDBModel::insertRows(int position, int end_row_number, const QModelIndex &)
+bool LevelDBModel::insertRows(int position, int end_row_number,
+		const QModelIndex &)
 {
 	beginInsertRows(QModelIndex(), position, end_row_number);
 	endInsertRows();
 	return true;
 }
-bool LevelDBModel::removeRows(int position, int rows, const QModelIndex &index)
+bool LevelDBModel::removeRows(int position, int end_row_number,
+		const QModelIndex &index)
 {
-//	beginInsertRows(QModelIndex(), shouldbe_rowpos, 1);
-//	endInsertRows();
+	beginRemoveRows(QModelIndex(), position, end_row_number);
+	endRemoveRows();
 	return true;
 }
 
@@ -200,4 +202,20 @@ void LevelDBModel::purgeDB()
 			db_->Delete(leveldb::WriteOptions(), it->key());
 		}
 	}
+}
+#include <cassert>
+void LevelDBModel::DeleteItem(const QString& key)
+{
+	auto item_index = FindKeyIndex(key);
+	auto status = db_->Delete(leveldb::WriteOptions(), key.toStdString());
+	if (status.ok())
+	{
+		removeRows(item_index.first.row(), item_index.first.row(),
+				QModelIndex());
+	}
+	else
+	{
+		assert(false);
+	}
+
 }
