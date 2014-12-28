@@ -33,7 +33,7 @@ public slots:
 		ui_inst->key_edit_->clear();
 		ui_inst->value_edit_->clear();
 	}
-	signals:
+signals:
 	void AddNewData(const QString& key, const QString& value);
 
 private:

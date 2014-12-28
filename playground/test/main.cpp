@@ -11,8 +11,7 @@ int main(int argc, char *argv[])
 	inst.GetView()->setModel(&dbmodel);
 
 	QObject::connect(&inst,
-			SIGNAL(AddNewData(const QString& , const QString& )),
-			&dbmodel,
+			SIGNAL(AddNewData(const QString& , const QString& )), &dbmodel,
 			SLOT(InsertNewData(const QString& , const QString& )));
 
 	inst.show();

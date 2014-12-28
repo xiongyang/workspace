@@ -21,6 +21,8 @@ LevelDBModel::LevelDBModel(const std::string& dbpath, QObject* parent) :
 	leveldb::Status status = leveldb::DB::Open(options, dbpath, &db_);
 	assert(status.ok());
 
+	purgeDB();
+
 	for (int i = 0; i < MaxCol; ++i)
 	{
 		for (int j = 0; j < MaxRow; ++j)
@@ -145,7 +147,7 @@ void LevelDBModel::InsertNewData(const QString& key, const QString& value)
 		if (status.ok())
 		{
 			int shouldbe_rowpos = FindKeyIndex(key).first.row();
-			insertRows(shouldbe_rowpos, 1);
+			insertRows(shouldbe_rowpos, shouldbe_rowpos);
 		}
 	}
 	else if (status.ok()) // the data is already in
@@ -170,13 +172,14 @@ std::pair<QModelIndex, QModelIndex> LevelDBModel::FindKeyIndex(
 		}
 		count++;
 	}
-	assert(false);
-	return std::make_pair(QModelIndex(), QModelIndex());
+
+	//the new index should be last one
+	return std::make_pair(index(count, 0), index(count, 1));
 }
 
-bool LevelDBModel::insertRows(int position, int rows, const QModelIndex &)
+bool LevelDBModel::insertRows(int position, int end_row_number, const QModelIndex &)
 {
-	beginInsertRows(QModelIndex(), position, rows);
+	beginInsertRows(QModelIndex(), position, end_row_number);
 	endInsertRows();
 	return true;
 }
@@ -185,4 +188,16 @@ bool LevelDBModel::removeRows(int position, int rows, const QModelIndex &index)
 //	beginInsertRows(QModelIndex(), shouldbe_rowpos, 1);
 //	endInsertRows();
 	return true;
+}
+
+void LevelDBModel::purgeDB()
+{
+	auto it = db_->NewIterator(leveldb::ReadOptions());
+	for (it->SeekToFirst(); it->Valid(); it->Next())
+	{
+		if (it->key().ToString() == "")
+		{
+			db_->Delete(leveldb::WriteOptions(), it->key());
+		}
+	}
 }
