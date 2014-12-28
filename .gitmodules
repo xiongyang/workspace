@@ -1,0 +1,6 @@
+[submodule "extern/leveldb"]
+	path = extern/leveldb
+	url = https://github.com/google/leveldb.git
+[submodule "extern/waf"]
+	path = extern/waf
+	url = https://code.google.com/p/waf/
