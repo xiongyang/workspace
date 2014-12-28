@@ -2,3 +2,4 @@
 RemoteSystemsTempFiles
 .lock-waf_linux2_build
 _build
+*pyc
