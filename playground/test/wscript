@@ -1,0 +1,27 @@
+#! /usr/bin/python
+# encoding: utf-8
+
+
+def build(bld):
+	bld.program(
+                source       = 'main.cpp start.ui LevelDBModel.cpp MyUIWidget.cpp',
+                target       = 'test',
+                features     = ['qt5'],
+				        use			 = ['QT5CORE', 'QT5WIDGETS', 'QT5GUI'],
+                includes     = ['.'],
+                #defines      = ['LINUX=1', 'BIDULE'],
+
+                lib          = ['leveldb'],
+                #libpath      = ['/usr/lib'],
+                #stlib        = ['dl'],
+                #stlibpath    = ['/usr/local/lib'],
+                linkflags    = ['-g'], 
+                #rpath        = ['/opt/kde/lib']
+                #vnum         = '1.2.3',
+
+                #install_path = '${SOME_PATH}/bin',
+                #cflags       = ['-O2', '-Wall'],
+                cxxflags     = ['-O3', '-fPIC', '-g', '-std=c++11'],
+                dflags       = ['-g'],
+	)  
+ 
