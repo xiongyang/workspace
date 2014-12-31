@@ -46,13 +46,21 @@ void MyWindow::onAddNewPair()
 void MyWindow::onDelete()
 {
 	auto select_mode = ui_inst->leveldb_view->selectionModel();
+	std::vector<QString> delete_keys;
 	if (select_mode->hasSelection())
 	{
 		auto selection_rows = select_mode->selectedRows(0);
 		for (auto each_row_index :  selection_rows)
 		{
 			auto key = model_->data(each_row_index, Qt::DisplayRole).toString();
-			emit DeletelItem(key);
+			delete_keys.push_back(std::move(key));
+			// we must recoed all the delete first. because the selection will
+			// change once we emit the first DeletelItem, the second DeleteItem will not find
+			// right key
+		}
+		for(auto each_delete: delete_keys)
+		{
+			emit DeletelItem(each_delete);
 		}
 	}
 	else
