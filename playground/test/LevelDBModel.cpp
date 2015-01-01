@@ -21,7 +21,7 @@ LevelDBModel::LevelDBModel(const std::string& dbpath, QObject* parent) :
 	leveldb::Status status = leveldb::DB::Open(options, dbpath, &db_);
 	assert(status.ok());
 
-	purgeDB();
+	//purgeDB();
 
 	for (int i = 0; i < MaxCol; ++i)
 	{
@@ -66,7 +66,7 @@ int LevelDBModel::columnCount(const QModelIndex& parent) const
 
 QVariant LevelDBModel::data(const QModelIndex& index, int role) const
 {
-	if (role == Qt::DisplayRole)
+	if (role == Qt::DisplayRole /*|| role == Qt::EditRole*/)
 	{
 		int count = 0;
 		auto it = db_->NewIterator(leveldb::ReadOptions());
@@ -115,9 +115,11 @@ bool LevelDBModel::setData(const QModelIndex & index, const QVariant & value,
 {
 	if (role = Qt::EditRole)
 	{
-//		m_store_string[index.column()][index.row()] =
-//				value.toString().toStdString();
-//		emit dataChanged(index, index);
+		;
+		auto keyindex = QAbstractTableModel::index(index.row(), 0);
+		auto key_string = data(keyindex, Qt::DisplayRole).toString();
+		db_->Put(leveldb::WriteOptions(), key_string.toStdString(), value.toString().toStdString());
+		emit dataChanged(index, index);
 	}
 	return true;
 }
