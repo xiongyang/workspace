@@ -15,8 +15,6 @@ TimerModel::TimerModel()
 : QAbstractTableModel(nullptr)
 {
 	start();
-    connect(&timer, SIGNAL(timeout()), this, SLOT(doWork()));
-    timer.start(1000);
 }
 
 TimerModel::~TimerModel()
@@ -53,6 +51,7 @@ void TimerModel::start()
 			{
 				std::this_thread::sleep_for(std::chrono::seconds(1));
 				timer_count ++;
+				QMetaObject::invokeMethod(this, "doWork");
 				std::cout << "Emit Timer Count " << timer_count <<  std::endl;
 			}
 		};

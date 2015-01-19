@@ -10,7 +10,6 @@
 
 #include <thread>
 #include <QtCore/qabstractitemmodel.h>
-#include <QtCore/QTimer>
 
 class TimerModel: public QAbstractTableModel
 {
@@ -31,7 +30,6 @@ public:
 private:
 	int timer_count;
 	std::thread timer_thread;
-	QTimer timer;
 };
 
 #endif /* TEST_TIMERMODEL_H_ */
