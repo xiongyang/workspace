@@ -37,6 +37,7 @@ signals:
 private:
 	Ui::mytest* ui_inst;
 	LevelDBModel* model_;
+	int timer_count;
 };
 
 #endif /* TEST_MYUIWIDGET_H_ */
