@@ -4,7 +4,7 @@
 
 def build(bld):
 	bld.program(
-                source       = 'main.cpp start.ui LevelDBModel.cpp MyUIWidget.cpp',
+                source       = 'main.cpp start.ui LevelDBModel.cpp MyUIWidget.cpp TimerModel.cpp',
                 target       = 'test',
                 features     = ['qt5'],
 				        use			 = ['QT5CORE', 'QT5WIDGETS', 'QT5GUI'],

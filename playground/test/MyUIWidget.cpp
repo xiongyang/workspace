@@ -7,15 +7,18 @@
 
 #include "MyUIWidget.h"
 #include "LevelDBModel.h"
+#include "TimerModel.h"
 
 MyWindow::MyWindow(QWidget *parent) :
-		QDialog(parent), ui_inst(new Ui::mytest())
+		QDialog(parent), ui_inst(new Ui::mytest()), timer_count(0)
 {
 	ui_inst->setupUi(this);
 	connect(ui_inst->insert_button_, SIGNAL(released()), this,
 			SLOT(onAddNewPair()));
 
 	connect(ui_inst->del_button_, SIGNAL(released()), this, SLOT(onDelete()));
+
+	ui_inst->timer_view->setModel(new TimerModel());
 }
 
 MyWindow::~MyWindow()

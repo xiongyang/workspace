@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>724</width>
-    <height>517</height>
+    <width>780</width>
+    <height>587</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -67,6 +67,16 @@
      <widget class="QTableView" name="leveldb_view"/>
     </item>
    </layout>
+  </widget>
+  <widget class="QTableView" name="timer_view">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>490</y>
+     <width>131</width>
+     <height>81</height>
+    </rect>
+   </property>
   </widget>
  </widget>
  <resources/>
