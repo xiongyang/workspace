@@ -4,7 +4,7 @@
 top = '.'
 out = '_build'
 
-sub_porject = ['test']
+sub_porject = ['test', 'python_embed']
 
 def options(opt):
         opt.load('compiler_cxx qt5')
