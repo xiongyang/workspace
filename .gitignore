@@ -10,3 +10,5 @@ SnapEMS
 SnapEMS2
 ctp_share.tar
 quickfix/
+.settings/
+playground/.externalToolBuilders/
