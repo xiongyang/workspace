@@ -77,20 +77,6 @@ int main(int argc, char *argv[])
 
 	new_thread.join();
 
-//	for (int i =0; i < 10; ++i)
-//	{
-//		std::this_thread::sleep_for(std::chrono::seconds(1));
-//
-//		std::string cpp_market_data
-//		{	"C++ market data "};
-//		cpp_market_data += std::to_string(i);
-//		auto data = PyString_FromString(cpp_market_data.c_str());
-//		auto pArgs = PyTuple_New(1);
-//		PyTuple_SetItem(pArgs, 0, data);
-//		std::cout << "C++ will call PyOnData" << std::endl;
-//		PyObject_CallObject(algo_funs[0], pArgs);
-//	}
-
 	Py_Finalize();
 	return 0;
 }
