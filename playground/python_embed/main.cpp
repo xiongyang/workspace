@@ -10,8 +10,6 @@
 #include <vector>
 #include <chrono>
 
-const char* path = "/home/xiong.yang/workspace/playground/python_embed";
-const char* algo = "Algo";
 
 //TODO(xiong) change it return std::shared_ptr<>  so we can set the deleter in it
 PyObject* TryLoadFun(PyObject* module, const std::string& fun)
@@ -58,7 +56,7 @@ int main(int argc, char *argv[])
 {
 	Py_Initialize();
 	initAlgoAPI();
-	auto algo_funs = LoadAlogModuel(path, algo);
+	auto algo_funs = LoadAlogModuel(argv[1], argv[2]);
 
 	std::thread new_thread([&]()
 	{

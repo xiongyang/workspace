@@ -4,17 +4,11 @@
 top = '.'
 out = '_build'
 
-<<<<<<< HEAD
 cxx_flags = ['-ggdb', '-std=c++0x', '-fPIC', '-fno-strict-aliasing', '-rdynamic', '-std=c++11', '-DDEBUG', '-DBOOST_LOG_DYN_LINK']
 link_flags = ['-g', '-lpthread', '-ldl', '-lssl', '-lcrypto']
 c_flags = ['-O2', '-ggdb', '-fPIC', '-fno-strict-aliasing', '-rdynamic', '-Wall',  '-DDEBUG', '-DSFL_LINUX', '-DBOOST_LOG_DYN_LINK']
 
-
-
-sub_porject = ['test', 'python_Extending_Embedding']
-=======
 sub_porject = ['test', 'python_embed']
->>>>>>> d3d12f139a280d3781c4c2242dfe5fd7582218c3
 
 def options(opt):
         opt.load('compiler_cxx qt5 compiler_c boost')
