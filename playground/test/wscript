@@ -8,15 +8,15 @@ def build(bld):
                 target       = 'test',
                 features     = ['qt5'],
 				        use			 = ['QT5CORE', 'QT5WIDGETS', 'QT5GUI'],
-                includes     = ['.'],
+                includes     = ['.', '/home/xiong.yang/workspace/extern/leveldb/include' ],
                 #defines      = ['LINUX=1', 'BIDULE'],
 
-                lib          = ['leveldb'],
+                lib          = ['pthread'],
                 #libpath      = ['/usr/lib'],
-                #stlib        = ['dl'],
-                #stlibpath    = ['/usr/local/lib'],
+                stlib        = [ 'leveldb'],
+                stlibpath    = ['/home/xiong.yang/workspace/extern/leveldb'],
                 linkflags    = ['-g'], 
-                #rpath        = ['/opt/kde/lib']
+                rpath        = ['/home/xiong.yang/workspace/extern/leveldb'],
                 #vnum         = '1.2.3',
 
                 #install_path = '${SOME_PATH}/bin',

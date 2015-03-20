@@ -9,6 +9,7 @@
 #include "LevelDBModel.moc"
 #include <QtCore/QTime>
 #include <QtCore/QTimer>
+#include <iostream>
 
 #include <cassert>
 #include "leveldb/db.h"
@@ -19,6 +20,7 @@ LevelDBModel::LevelDBModel(const std::string& dbpath, QObject* parent) :
 	leveldb::Options options;
 	options.create_if_missing = true;
 	leveldb::Status status = leveldb::DB::Open(options, dbpath, &db_);
+	std::cout << status.ToString() << std::endl;
 	assert(status.ok());
 
 	purgeDB();
